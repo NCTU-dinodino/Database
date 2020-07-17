@@ -1,6 +1,6 @@
 exports.ShowGradeTeacherResearchStudent="\
     select r.teacher_id,r.intro, s.sname, r.student_id, r.class_detail, r.research_title, r.first_second, r.score, r.semester, r.comment, r.add_status,\
-    if(substring(s.program, 1, 1)='A' or substring(s.program, 1, 1)='B' or substring(s.program, 1, 1)='C' or substring(s.program, 1, 1)='D',1,0) as status, r.replace_pro, r.unique_id \
+    if(substring(s.program, 1, 1)='A' or substring(s.program, 1, 1)='B' or substring(s.program, 1, 1)='C' or substring(s.program, 1, 1)='D',1,0) as status, r.replace_pro, r.unique_id, s.phone, s.email \
     from \
     (\
         select r.intro, t.teacher_id, r.student_id, r.class_detail, r.score, r.research_title, r.first_second, r.semester, r.comment, r.add_status, r.replace_pro, r.unique_id \
