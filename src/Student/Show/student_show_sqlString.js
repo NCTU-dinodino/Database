@@ -624,7 +624,7 @@ exports.ShowGivenOffsetApplyForm = "\
     and pre.cos_code_old = body.cos_code_old";
 
 exports.ShowGivenGradeStudent = "\
-    select sname, student_id, program, graduate,\
+    select sname, student_id, program, graduate, grad_rule_year, \
     if(substring(program,1,1)='A' or substring(program,1,1)='B' or substring(program,1,1)='C' or substring(program,1,1)='D',1,0) as status\
     from student\
     where grade = :grade\
