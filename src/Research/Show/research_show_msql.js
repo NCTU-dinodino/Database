@@ -190,6 +190,24 @@ module.exports = {
             });
         });
     }, 
+    ShowResearchGroupByUniqueID:function(data, callback){
+        if(typeof(data) === 'string')
+            data = JSON.parse(data);
+        const resource = pool.acquire();
+        resource.then(function(c){
+            var sql_ShowResearchGroupByUniqueID = c.prepare(s.ShowResearchGroupByUniqueID);
+            c.query(sql_ShowResearchGroupByUniqueID(data), function(err, result){
+                if(err)
+                {
+                    callback(err, undefined);
+                    pool.release(c);
+                    return ;
+                }
+                callback(null, JSON.stringify(result));
+                pool.release(c);
+            });
+        });
+    },
     ShowResearchFilePath:function(data, callback){
         if(typeof(data) === 'string')
             data = JSON.parse(data);

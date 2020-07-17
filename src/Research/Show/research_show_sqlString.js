@@ -1,9 +1,9 @@
 exports.ShowGradeTeacherResearchStudent="\
     select r.teacher_id,r.intro, s.sname, r.student_id, r.class_detail, r.research_title, r.first_second, r.score, r.semester, r.comment, r.add_status,\
-    if(substring(s.program, 1, 1)='A' or substring(s.program, 1, 1)='B' or substring(s.program, 1, 1)='C' or substring(s.program, 1, 1)='D',1,0) as status, r.replace_pro \
+    if(substring(s.program, 1, 1)='A' or substring(s.program, 1, 1)='B' or substring(s.program, 1, 1)='C' or substring(s.program, 1, 1)='D',1,0) as status, r.replace_pro, r.unique_id \
     from \
     (\
-        select r.intro, t.teacher_id, r.student_id, r.class_detail, r.score, r.research_title, r.first_second, r.semester, r.comment, r.add_status, r.replace_pro \
+        select r.intro, t.teacher_id, r.student_id, r.class_detail, r.score, r.research_title, r.first_second, r.semester, r.comment, r.add_status, r.replace_pro, r.unique_id \
         from research_student as r, teacher as t\
         where r.tname = t.tname\
     ) as r, student as s \
@@ -129,7 +129,7 @@ exports.ShowStudentResearchInfo="\
     select rs.student_id, rs.tname, rs.research_title, rs.first_second, rs.memo, rs.file, rs.photo, rs.filename, rs.intro,\
     rs.score, rs.semester, rs.comment, rs.video, rs.add_status,\
     case a.program when 'A' then 1 when 'B' then 1 when 'C' then 1 when 'D' then 1\
-    else 0 end as status, rs.replace_pro \
+    else 0 end as status, rs.replace_pro, rs.unique_id \
     from research_student as rs, \
     (\
         select student_id, program\
@@ -146,6 +146,11 @@ exports.ShowResearchGroup="\
     and tname = :tname\
     and first_second = :first_second\
     and semester = :semester";
+
+exports.ShowResearchGroupByUniqueID="\
+    select student_id \
+    from research_student\
+    where unique_id = :unique_id";
 
 exports.ShowResearchTitleNumber="\
     select count(distinct t.research_title)+1 as count\

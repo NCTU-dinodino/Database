@@ -185,7 +185,7 @@ var m = require('./msql.js');
 // })
 // // 設定推薦課程的星星等級，如果已經存在就覆寫
 
-// m.ShowGradeTeacherResearchStudent('T9229', '', function(err, result){
+// m.ShowGradeTeacherResearchStudent('T9229', '06', function(err, result){
 // 	if(err)
 // 		throw err;
 // 	console.log(JSON.parse(result));
@@ -255,20 +255,27 @@ var m = require('./msql.js');
 // });
 // // 輸入系級，回傳該系級所有學生的專題資訊
 
-// m.ShowStudentResearchInfo('0410835', function(err, result){
-// 	if(err)
-// 		throw err;
-// 	console.log(JSON.parse(result));
-// });
-// // 用學號查詢專題的標題、網址、介紹、年度，1表示本系生，0表示外系生
-// // 0410835 電機系
-
-m.ShowResearchGroup({tname:'吳凱強', research_title:'107-2尚未決定', first_second:1, semester:'107-2'}, function(err, result){
+m.ShowStudentResearchInfo('0410835', function(err, result){
 	if(err)
 		throw err;
 	console.log(JSON.parse(result));
 });
-// 用教授名稱、專題名稱、專題一二查詢所有同組專題生的學號
+// 用學號查詢專題的標題、網址、介紹、年度，1表示本系生，0表示外系生
+// 0410835 電機系
+
+// m.ShowResearchGroup({tname:'吳凱強', research_title:'107-2尚未決定', first_second:1, semester:'107-2'}, function(err, result){
+// 	if(err)
+// 		throw err;
+// 	console.log(JSON.parse(result));
+// });
+// // 用教授名稱、專題名稱、專題一二查詢所有同組專題生的學號
+
+// m.ShowResearchGroupByUniqueID({unique_id: '3e6e5380adc034e6f549b78a18467bfb'}, function(err, result){
+// 	if(err)
+// 		throw err;
+// 	console.log(JSON.parse(result));
+// });
+// // 用unique_id查詢所有同組專題生的學號
 
 // m.SetResearchInfo({tname:'彭文志', research_title:'讓電腦看懂羽球', first_second:2, semester:'107-2', new_title:'讓電腦看懂羽球NEW', new_file:'base64 string file', new_photo:'base64 testphoto', new_filename:'testnew filename', new_intro:'c'});
 // // 用教授名稱、專題名稱、專題一二更新專題資訊(標題、網址、介紹)
