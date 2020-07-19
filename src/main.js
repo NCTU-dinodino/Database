@@ -221,7 +221,7 @@ var m = require('./msql.js');
 // 	console.log(JSON.parse(result));
 // }); // 回傳教授id, 名字對應表
 
-// m.CreateResearchApplyForm({phone:'0900', student_id:'0516003', research_title:'testttt_14', tname:'彭文志', first_second:2, email:'wawawa@crayonSinJang', semester:'106-2', program:'應數系', name:'王小明'}, function(err,result){
+// m.CreateResearchApplyForm({phone:'0900', student_id:'0616078', research_title:'testttt_14', tname:':)', first_second:2, email:'wawawa@crayonSinJang', semester:'106-2', program:'應數系', name:'王小明'}, function(err,result){
 // 	if(err)
 // 		throw err;
 // 		//老師名字若不存在，就會拋出ERROR
@@ -231,8 +231,11 @@ var m = require('./msql.js');
 // m.SetResearchApplyFormStatus({research_title:'我是專題標題2~', tname:'彭文志', first_second:2, agree:3, semester:'106-2'});
 // // // set research apply form agree bit  0預設 1接受 2審核中 3拒絕
 
-// m.DeleteResearchApplyForm({research_title:'我是專題標題2~', tname:'彭文志', first_second:2, semester:'106-2'});
-// // delete research apply form
+m.DeleteResearchApplyForm({research_title:'testttt_14', tname:':)', first_second:2, semester:'106-2'}, function(err, result){
+	if(err)
+		throw err;
+	console.log(JSON.parse(result));
+}); // delete research apply form
 
 // m.ShowTeacherResearchApplyFormList('T7837', function(err, result){
 // 	if(err)
@@ -255,13 +258,13 @@ var m = require('./msql.js');
 // });
 // // 輸入系級，回傳該系級所有學生的專題資訊
 
-m.ShowStudentResearchInfo('0410835', function(err, result){
-	if(err)
-		throw err;
-	console.log(JSON.parse(result));
-});
-// 用學號查詢專題的標題、網址、介紹、年度，1表示本系生，0表示外系生
-// 0410835 電機系
+// m.ShowStudentResearchInfo('0410835', function(err, result){
+// 	if(err)
+// 		throw err;
+// 	console.log(JSON.parse(result));
+// });
+// // 用學號查詢專題的標題、網址、介紹、年度，1表示本系生，0表示外系生
+// // 0410835 電機系
 
 // m.ShowResearchGroup({tname:'吳凱強', research_title:'107-2尚未決定', first_second:1, semester:'107-2'}, function(err, result){
 // 	if(err)
