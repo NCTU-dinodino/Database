@@ -22,7 +22,7 @@ exports.SetRejectReason = '\
     where student_id = :id';
 
 exports.CreateApplyPeriod = '\
-    insert into apply_period \
+    insert into apply_period(type, begin, end) \
     values (:type, :begin, :end) \
     on duplicate key update \
     begin = :begin,\
