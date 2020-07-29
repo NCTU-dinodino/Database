@@ -4,11 +4,11 @@
 
 var m = require('./msql.js');
 
-// m.ShowUserInfo('0516003', function(err, result){
-//     if(err)
-//         throw err;
-//     console.log(JSON.parse(result));
-// }); // ShowUserInfo 回傳學生資料
+m.ShowUserInfo('0716003', function(err, result){
+    if(err)
+        throw err;
+    console.log(JSON.parse(result));
+}); // ShowUserInfo 回傳學生資料
 
 // //m.SetUserEmail('0516003', 'da2bct@test');
 // // SetUserEmail(學號, email) 更新此學號學生之email
