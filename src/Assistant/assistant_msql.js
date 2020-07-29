@@ -150,7 +150,7 @@ module.exports = {
                 pool.release(c);
             })  
         })
-    },
+    },/*
     DeleteApplyPeriod: function(data, callback){
         const resource=pool.acquire();
         resource.then(function(c) {
@@ -166,7 +166,7 @@ module.exports = {
                 pool.release(c);
             })  
         })
-    },
+    },*/
     ShowApplyPeriod: function(data, callback){
         var period = {
             offset: {
