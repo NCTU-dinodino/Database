@@ -231,11 +231,11 @@ var m = require('./msql.js');
 // m.SetResearchApplyFormStatus({research_title:'我是專題標題2~', tname:'彭文志', first_second:2, agree:3, semester:'106-2'});
 // // // set research apply form agree bit  0預設 1接受 2審核中 3拒絕
 
-m.DeleteResearchApplyForm({research_title:'testttt_14', tname:':)', first_second:2, semester:'106-2'}, function(err, result){
-	if(err)
-		throw err;
-	console.log(JSON.parse(result));
-}); // delete research apply form
+// m.DeleteResearchApplyForm({research_title:'testttt_14', tname:':)', first_second:2, semester:'106-2'}, function(err, result){
+// 	if(err)
+// 		throw err;
+// 	console.log(JSON.parse(result));
+// }); // delete research apply form
 
 // m.ShowTeacherResearchApplyFormList('T7837', function(err, result){
 // 	if(err)
@@ -337,6 +337,20 @@ m.DeleteResearchApplyForm({research_title:'testttt_14', tname:':)', first_second
 // 	console.log(JSON.parse(result));
 // }); 
 // // 回傳專題成績列表:教授名字, 學生姓名學號, 成績, 評論
+
+// m.ShowOnCosButNotInDBStudentList({semester: '108-1'}, function(err, result){
+// 	if(err)
+// 		throw err;
+// 	console.log(JSON.parse(result));
+// });
+// // 回傳選課有選專題但不在專題和專題申請表的學生學號
+
+m.ShowInDBButNotOnCosStudentList({semester: '108-1'}, function(err, result){
+	if(err)
+		throw err;
+	console.log(JSON.parse(result));
+});
+// 回傳在專題或專題申請表但選課沒有選專題的學生學號
 
 // m.ShowStudentMentor('0516003', function(err, result){
 // 	if(err)
