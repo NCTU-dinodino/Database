@@ -215,29 +215,33 @@ module.exports = {
         });
     },
     InsertNewData: function(data){
-        // data => {file_name: 'yoyoabc.csv', data_type: "課程成績資料", semester: '108-2'}
+        // data => {file_name: 'yoyoabc.xlsx', data_type: "課程成績資料", semester: '108-2'}
         // "課程成績資料" => "cos_score"
         // "新老師資料"   => "new_teacher_info"
         // "學生資料"    => "student"
         // "抵免免修資料"    => "offset"
         // "英文換修資料" => "en_certificate"
+        // "專題選課名單" => "research_student_list"
         var type_mapping = {
             "課程成績資料": "cos_score",
             "新老師資料": "new_teacher_info",
             "學生資料": "student",
             "抵免免修資料": "offset",
-            "英文換修資料":"en_certificate"
+            "英文換修資料": "en_certificate", 
+            "專題選課名單": "research_student_list"
         }
 
         let exec_sync = require('child_process').execSync;
         let exec = require('child_process').exec;
 
-
         let data_path_base = '/home/nctuca/dinodino-extension/automation/data/'
         let program_path = '/home/nctuca/dinodino-extension/automation/'
         let convertProgram = 'checkFile.py'
 
-        var program_name = 'insert_'+type_mapping[data['data_type']]+'.py';
+        if(data['data_type'] == '專題選課名單')
+            var program_name = 'update_research_student_list.py';
+        else
+            var program_name = 'insert_'+type_mapping[data['data_type']]+'.py';
         var data_path = data_path_base+data['semester']+'-'+type_mapping[data['data_type']]+'.csv';
 
         let convart_file_name = data_path_base+data['semester']+'-'+data['data_type']+'.xlsx'
