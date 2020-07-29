@@ -29,7 +29,7 @@ exports.CreateApplyPeriod = '\
     end = :end';
 
 exports.ShowApplyPeriod = '\
-    select semester, type, begin, end \
+    select type, begin, end \
     from apply_period';
 
 /*
