@@ -4,11 +4,11 @@
 
 var m = require('./msql.js');
 
-m.ShowUserInfo('0716003', function(err, result){
-    if(err)
-        throw err;
-    console.log(JSON.parse(result));
-}); // ShowUserInfo 回傳學生資料
+// m.ShowUserInfo('0716003', function(err, result){
+//     if(err)
+//         throw err;
+//     console.log(JSON.parse(result));
+// }); // ShowUserInfo 回傳學生資料
 
 // //m.SetUserEmail('0516003', 'da2bct@test');
 // // SetUserEmail(學號, email) 更新此學號學生之email
@@ -338,12 +338,12 @@ m.ShowUserInfo('0716003', function(err, result){
 // }); 
 // // 回傳專題成績列表:教授名字, 學生姓名學號, 成績, 評論
 
-// m.ShowOnCosButNotInDBStudentList({semester: '108-1'}, function(err, result){
-// 	if(err)
-// 		throw err;
-// 	console.log(JSON.parse(result));
-// });
-// // 回傳選課有選專題但不在專題和專題申請表的學生學號
+m.ShowOnCosButNotInDBStudentList({semester: '108-1'}, function(err, result){
+	if(err)
+		throw err;
+	console.log(JSON.parse(result));
+});
+// 回傳選課有選專題但不在專題和專題申請表的學生學號
 
 // m.ShowInDBButNotOnCosStudentList({semester: '108-1'}, function(err, result){
 // 	if(err)
@@ -696,13 +696,13 @@ m.ShowUserInfo('0716003', function(err, result){
 //     console.log(JSON.parse(result));
 // });
 
-m.InsertNewData({file_name: '專題選課名單範例.xlsx', data_type: "專題選課名單", semester: '108-1'});
-// 執行自動化匯入，因為是offline的作法，所以沒有call back function
-// 參數：
-// file_name: 檔案名稱
-// data_type:
-//      "課程成績資料", "新老師資料", "學生資料", "抵免免修資料", "英文換修資料", "專題修課名單"
-// semester: "108-1", "108-2", "109-1" ... 
+// m.InsertNewData({file_name: '專題選課名單範例.xlsx', data_type: "專題選課名單", semester: '108-1'});
+// // 執行自動化匯入，因為是offline的作法，所以沒有call back function
+// // 參數：
+// // file_name: 檔案名稱
+// // data_type:
+// //      "課程成績資料", "新老師資料", "學生資料", "抵免免修資料", "英文換修資料", "專題選課名單"
+// // semester: "108-1", "108-2", "109-1" ... 
 
 // m.ShowAllDataLog(function(err, result){
 //     if(err)
