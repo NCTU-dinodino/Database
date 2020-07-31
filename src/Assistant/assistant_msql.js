@@ -151,7 +151,7 @@ module.exports = {
             })  
         })
     },
-    ShowApplyPeriod: function(data, callback){
+    ShowApplyPeriod: function(callback){
         var period = {
             offset: {
                 begin: null, 
@@ -169,7 +169,7 @@ module.exports = {
         const resource=pool.acquire();
         resource.then(function(c) {
             var sql_ShowApplyPeriod = c.prepare(s.ShowApplyPeriod);
-                c.query(sql_ShowApplyPeriod(data), function(err, result){
+                c.query(sql_ShowApplyPeriod({}), function(err, result){
                     if(err)
                     {
                         callback(err, undefined);
@@ -185,7 +185,6 @@ module.exports = {
                         for(i in result){
                             let type = result[i]["type"];
                             if(period.hasOwnProperty(type)){
-                                //period[type]["semester"] = result[i]["semester"];
                                 period[type]["type"] = result[i]["type"];
                                 period[type]["begin"] = result[i]["begin"];
                                 period[type]["end"] = result[i]["end"];

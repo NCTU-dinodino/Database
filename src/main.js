@@ -649,19 +649,19 @@ var m = require('./msql.js');
 // }); 
 // // 設定是否有申請更換教授 0:沒申請 1:有申請
 
-m.SetApplyPeriod({type:'graduation', begin:'2020/7/1, 8:00PM', end: '2020/9/1, 10:00PM'}, function(err, result){
-	if(err)
-		throw err;
-	console.log(JSON.parse(result));
-}); 
-// 創建申請的期限 type: offset, research, graduation
-
-// m.ShowApplyPeriod(function(err, result){
+// m.SetApplyPeriod({type:'graduation', begin:'2020/7/1, 8:00PM', end: '2020/9/1, 10:00PM'}, function(err, result){
 // 	if(err)
 // 		throw err;
 // 	console.log(JSON.parse(result));
 // }); 
-// // 顯示申請的期限 offset, research, graduation
+// // 創建申請的期限 type: offset, research, graduation
+
+m.ShowApplyPeriod(function(err, result){
+	if(err)
+		throw err;
+	console.log(JSON.parse(result));
+}); 
+// 顯示申請的期限 offset, research, graduation
 
 // m.CreateBulletinMsg({cont_type: 0, content: "這是一個測試公告yoyoyoyoyoyo", link: "this is a link yo"}, function(err, result){
 // 	// "link" 可以不放
