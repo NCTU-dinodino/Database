@@ -339,4 +339,40 @@ module.exports = {
             });
         });
     }, 
+    ShowOnCosButNotInDBStudentList: function(data, callback) {
+        if(typeof(data) === 'string')
+            data = JSON.parse(data);
+        const resource = pool.acquire();
+        resource.then(function(c){
+            var sql_ShowOnCosButNotInDBStudentList = c.prepare(s.ShowOnCosButNotInDBStudentList);
+            c.query(sql_ShowOnCosButNotInDBStudentList(data), function(err, result){
+                if(err)
+                {
+                    callback(err, undefined);
+                    pool.release(c);
+                    return ;
+                }
+                callback(null, JSON.stringify(result));
+                pool.release(c);
+            });
+        });
+    }, 
+    ShowInDBButNotOnCosStudentList: function(data, callback) {
+        if(typeof(data) === 'string')
+            data = JSON.parse(data);
+        const resource = pool.acquire();
+        resource.then(function(c){
+            var sql_ShowInDBButNotOnCosStudentList = c.prepare(s.ShowInDBButNotOnCosStudentList);
+            c.query(sql_ShowInDBButNotOnCosStudentList(data), function(err, result){
+                if(err)
+                {
+                    callback(err, undefined);
+                    pool.release(c);
+                    return ;
+                }
+                callback(null, JSON.stringify(result));
+                pool.release(c);
+            });
+        });
+    }, 
 };

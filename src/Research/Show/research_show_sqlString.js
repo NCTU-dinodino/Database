@@ -254,5 +254,48 @@ exports.ShowStudentFirstSecond = "\
     from research_student \
     where student_id = :student_id \
     order by semester desc \
-    limit 1\
+    limit 1";
+
+exports.ShowOnCosButNotInDBStudentList = "\
+    select s.student_id, s.sname\
+    from student as s, (\
+        select roc.student_id\
+        from rs_on_cos as roc\
+        where roc.student_id not in\
+        (\
+            select student_id\
+            from research_student\
+            where semester = :semester\
+        )\
+        and roc.student_id not in\
+        (\
+            select student_id\
+            from research_apply_form\
+            where semester = :semester\
+        )\
+        and roc.semester = :semester\
+    ) as t\
+    where s.student_id = t.student_id\
+    ";
+
+exports.ShowInDBButNotOnCosStudentList = "\
+    select s.student_id, s.sname\
+    from student as s, (\
+        select distinct student_id from (\
+            select rs.student_id\
+            from research_student as rs\
+            where add_status = 0\
+            and semester = :semester\
+        union\
+            select raf.student_id\
+            from research_apply_form as raf\
+            where raf.student_id not in (\
+                select student_id\
+                from rs_on_cos\
+                where semester = :semester\
+            )\
+            and raf.semester = :semester\
+        ) t\
+    ) as t\
+    where s.student_id = t.student_id\
     ";

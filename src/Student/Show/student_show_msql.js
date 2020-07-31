@@ -75,6 +75,12 @@ module.exports = {
                                         pool.release(c);
                                         return;
                                     }
+                                    if(result.length==0)
+                                    {
+                                        callback(null, JSON.stringify(result));
+                                        pool.release(c);
+                                        return;
+                                    }
                                     result[0]['failed'] = 'not_failed';
                                     for(let i in failed)
                                         if(failed[i]['failed'] == 'failed'){
