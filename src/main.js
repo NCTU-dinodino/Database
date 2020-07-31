@@ -635,21 +635,14 @@ m.DeleteResearchApplyForm({research_title:'testttt_14', tname:':)', first_second
 // }); 
 // // 設定是否有申請更換教授 0:沒申請 1:有申請
 
-// m.CreateApplyPeriod({semester: '108-1', type:'research', begin:'2019/9/1, 8:00PM', end: '2019/10/1, 10:00PM'}, function(err, result){
+// m.CreateApplyPeriod(type:'research', begin:'2019/9/1, 8:00PM', end: '2019/10/1, 10:00PM'}, function(err, result){
 // 	if(err)
 // 		throw err;
 // 	console.log(JSON.parse(result));
 // }); 
 // // 創建申請的期限 type: offset, research, graduation
 
-// m.DeleteApplyPeriod({semester: '108-1', type:'research'}, function(err, result){
-// 	if(err)
-// 		throw err;
-// 	console.log(JSON.parse(result));
-// }); 
-// // 刪除申請的期限 type: offset, research, graduation
-
-// m.ShowApplyPeriod({semester: '108-1'}, function(err, result){
+// m.ShowApplyPeriod(function(err, result){
 // 	if(err)
 // 		throw err;
 // 	console.log(JSON.parse(result));
