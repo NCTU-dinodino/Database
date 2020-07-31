@@ -135,11 +135,11 @@ module.exports = {
             });
         });
     },
-    CreateApplyPeriod: function(data, callback){
+    SetApplyPeriod: function(data, callback){
         const resource=pool.acquire();
         resource.then(function(c) {
-            var sql_CreateApplyPeriod = c.prepare(s.CreateApplyPeriod);
-            c.query(sql_CreateApplyPeriod(data), function(err, result){
+            var sql_SetApplyPeriod = c.prepare(s.SetApplyPeriod);
+            c.query(sql_SetApplyPeriod(data), function(err, result){
                 if(err)
                 {
                     callback(err, undefined);
@@ -150,23 +150,7 @@ module.exports = {
                 pool.release(c);
             })  
         })
-    },/*
-    DeleteApplyPeriod: function(data, callback){
-        const resource=pool.acquire();
-        resource.then(function(c) {
-            var sql_DeleteApplyPeriod = c.prepare(s.DeleteApplyPeriod);
-            c.query(sql_DeleteApplyPeriod(data), function(err, result){
-                if(err)
-                {
-                    callback(err, undefined);
-                    pool.release(c);
-                    return ;
-                }
-                callback(null, JSON.stringify(result));
-                pool.release(c);
-            })  
-        })
-    },*/
+    },
     ShowApplyPeriod: function(data, callback){
         var period = {
             offset: {

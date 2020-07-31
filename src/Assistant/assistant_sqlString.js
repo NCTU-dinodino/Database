@@ -21,35 +21,15 @@ exports.SetRejectReason = '\
     set reject_reason = :reject_reason\
     where student_id = :id';
 
-exports.CreateApplyPeriod = '\
-    insert into apply_period(type, begin, end) \
-    values (:type, :begin, :end) \
-    on duplicate key update \
-    begin = :begin,\
-    end = :end';
+exports.SetApplyPeriod = '\
+    update apply_period\
+    set begin = :begin, end = :end\
+    where type = :type\
+    ';
 
 exports.ShowApplyPeriod = '\
     select type, begin, end \
     from apply_period';
-
-/*
-A Scrap of code Before update 2020/07/29
-
-exports.CreateApplyPeriod = '\
-    insert into apply_period \
-    values (:semester, :type, :begin, :end) \
-    on duplicate key update \
-    begin = :begin,\
-    end = :end';
-exports.DeleteApplyPeriod = '\
-    delete from apply_period\
-    where semester = :semester\
-    and type = :type';
-exports.ShowApplyPeriod = '\
-    select semester, type, begin, end \
-    from apply_period \
-    where semester = :semester';
-*/
 
 exports.ShowAllDataLog = '\
     select unique_id, time, status, message, year, semester, log_type as data_type \

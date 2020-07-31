@@ -338,12 +338,12 @@ var m = require('./msql.js');
 // }); 
 // // 回傳專題成績列表:教授名字, 學生姓名學號, 成績, 評論
 
-m.ShowOnCosButNotInDBStudentList({semester: '108-1'}, function(err, result){
-	if(err)
-		throw err;
-	console.log(JSON.parse(result));
-});
-// 回傳選課有選專題但不在專題和專題申請表的學生學號
+// m.ShowOnCosButNotInDBStudentList({semester: '108-1'}, function(err, result){
+// 	if(err)
+// 		throw err;
+// 	console.log(JSON.parse(result));
+// });
+// // 回傳選課有選專題但不在專題和專題申請表的學生學號
 
 // m.ShowInDBButNotOnCosStudentList({semester: '108-1'}, function(err, result){
 // 	if(err)
@@ -649,12 +649,12 @@ m.ShowOnCosButNotInDBStudentList({semester: '108-1'}, function(err, result){
 // }); 
 // // 設定是否有申請更換教授 0:沒申請 1:有申請
 
-// m.CreateApplyPeriod(type:'research', begin:'2019/9/1, 8:00PM', end: '2019/10/1, 10:00PM'}, function(err, result){
-// 	if(err)
-// 		throw err;
-// 	console.log(JSON.parse(result));
-// }); 
-// // 創建申請的期限 type: offset, research, graduation
+m.SetApplyPeriod({type:'graduation', begin:'2020/7/1, 8:00PM', end: '2020/9/1, 10:00PM'}, function(err, result){
+	if(err)
+		throw err;
+	console.log(JSON.parse(result));
+}); 
+// 創建申請的期限 type: offset, research, graduation
 
 // m.ShowApplyPeriod(function(err, result){
 // 	if(err)
