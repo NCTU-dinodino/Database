@@ -258,13 +258,13 @@ var m = require('./msql.js');
 // });
 // // 輸入系級，回傳該系級所有學生的專題資訊
 
-// m.ShowStudentResearchInfo('0410835', function(err, result){
-// 	if(err)
-// 		throw err;
-// 	console.log(JSON.parse(result));
-// });
-// // 用學號查詢專題的標題、網址、介紹、年度，1表示本系生，0表示外系生
-// // 0410835 電機系
+m.ShowStudentResearchInfo('0516003', function(err, result){
+	if(err)
+		throw err;
+	console.log(JSON.parse(result));
+});
+// 用學號查詢專題的標題、網址、介紹、年度，1表示本系生，0表示外系生
+// 0410835 電機系
 
 // m.ShowResearchGroup({tname:'吳凱強', research_title:'107-2尚未決定', first_second:1, semester:'107-2'}, function(err, result){
 // 	if(err)
@@ -642,7 +642,7 @@ var m = require('./msql.js');
 // });
 // // 查詢該學期該教授的此題目，目前有幾筆
 
-// m.SetResearchReplace({student_id: '0516003', research_title:'testttt+_9', semester:'106-2', replace_pro: '1'}, function(err, result){
+// m.SetResearchReplace({student_id: '0516003', replace_pro: '1'}, function(err, result){
 // 	if(err)
 // 		throw err;
 // 	console.log(JSON.parse(result));
@@ -656,12 +656,12 @@ var m = require('./msql.js');
 // }); 
 // // 創建申請的期限 type: offset, research, graduation
 
-m.ShowApplyPeriod(function(err, result){
-	if(err)
-		throw err;
-	console.log(JSON.parse(result));
-}); 
-// 顯示申請的期限 offset, research, graduation
+// m.ShowApplyPeriod(function(err, result){
+// 	if(err)
+// 		throw err;
+// 	console.log(JSON.parse(result));
+// }); 
+// // 顯示申請的期限 offset, research, graduation
 
 // m.CreateBulletinMsg({cont_type: 0, content: "這是一個測試公告yoyoyoyoyoyo", link: "this is a link yo"}, function(err, result){
 // 	// "link" 可以不放

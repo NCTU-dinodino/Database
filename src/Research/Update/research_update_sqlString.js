@@ -138,7 +138,5 @@ exports.DeleteResearchApplyForm="\
 
 exports.SetResearchReplace="\
     update research_student set replace_pro = :replace_pro \
-    where research_title = :research_title \
-    and student_id = :student_id \
-    and semester = :semester";
+    where student_id = :student_id";
     
