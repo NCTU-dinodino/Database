@@ -185,23 +185,38 @@ exports.ShowResearchScoreComment="\
     and r.first_second = :first_second"
 
 exports.ShowTeacherResearchApplyFormList="\
-    select a.student_id, s.sname, s.program,a.research_title, a.teacher_id, a.tname, a.first_second, a.agree, s.phone, s.email, a.semester,\
-    if(substring(s.program, 1, 1)='A' or substring(s.program, 1, 1)='B' or substring(s.program, 1, 1)='C' or substring(s.program, 1, 1)='D', 1, 0) as status, rs.replace_pro\
-    from \
+    select tmp.*, rs.replace_pro\
+    from\
     (\
-        select t.teacher_id, r.student_id, r.research_title, r.tname, r.agree, r.first_second, r.semester\
-        from teacher as t, research_apply_form as r\
-        where t.tname = r.tname\
-    ) as a, \
+        select a.student_id, s.sname, s.program, a.research_title, a.teacher_id, a.tname, a.first_second, a.agree, s.phone, s.email, a.semester,\
+        if(substring(s.program, 1, 1)='A' or substring(s.program, 1, 1)='B' or substring(s.program, 1, 1)='C' or substring(s.program, 1, 1)='D', 1, 0) as status\
+        from \
+        (\
+            select t.teacher_id, r.student_id, r.research_title, r.tname, r.agree, r.first_second, r.semester\
+            from teacher as t, research_apply_form as r\
+            where t.tname = r.tname\
+            and t.teacher_id = :teacher_id\
+        ) as a, \
+        (\
+            select sname, student_id, phone, email, program \
+            from student\
+        ) as s \
+        where s.student_id = a.student_id \
+    ) as tmp \
+    left outer join \
     (\
-        select sname, student_id, phone, email, program \
-        from student\
-    ) as s, \
-    research_student as rs\
-    where s.student_id = a.student_id \
-    and a.teacher_id = :teacher_id \
-    and rs.student_id = a.student_id \
-    order by a.research_title";
+        select r.student_id, r.semester, r.replace_pro\
+        from research_student as r,\
+        (\
+            select t.tname\
+            from teacher as t\
+            where t.teacher_id = :teacher_id\
+        ) as t\
+        where r.tname = t.tname\
+    ) as rs\
+    on rs.student_id = tmp.student_id \
+    and rs.semester = tmp.semester\
+    order by tmp.research_title";
 
 exports.ShowStudentResearchApplyForm="\
     select a.student_id, s.sname, a.research_title, a.tname, a.agree, a.first_second, s.phone, s.email, a.semester,s.status\

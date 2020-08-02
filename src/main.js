@@ -237,12 +237,12 @@ var m = require('./msql.js');
 // 	console.log(JSON.parse(result));
 // }); // delete research apply form
 
-// m.ShowTeacherResearchApplyFormList('T7837', function(err, result){
-// 	if(err)
-// 		throw err;
-// 	console.log(JSON.parse(result));
-// });
-// // 回傳該教授的學生專題申請清單，status: 1表示本系生，0表示外系生，agree: 0預設 1接受 2審核中 3拒絕
+m.ShowTeacherResearchApplyFormList('T9229', function(err, result){
+	if(err)
+		throw err;
+	console.log(JSON.parse(result));
+});
+// 回傳該教授的學生專題申請清單，status: 1表示本系生，0表示外系生，agree: 0預設 1接受 2審核中 3拒絕
 
 // m.ShowStudentResearchApplyForm('0411276', function(err, result){
 // 	if(err)
@@ -656,12 +656,12 @@ var m = require('./msql.js');
 // }); 
 // // 創建申請的期限 type: offset, research, graduation
 
-m.ShowApplyPeriod(function(err, result){
-	if(err)
-		throw err;
-	console.log(JSON.parse(result));
-}); 
-// 顯示申請的期限 offset, research, graduation
+// m.ShowApplyPeriod(function(err, result){
+// 	if(err)
+// 		throw err;
+// 	console.log(JSON.parse(result));
+// }); 
+// // 顯示申請的期限 offset, research, graduation
 
 // m.CreateBulletinMsg({cont_type: 0, content: "這是一個測試公告yoyoyoyoyoyo", link: "this is a link yo"}, function(err, result){
 // 	// "link" 可以不放
