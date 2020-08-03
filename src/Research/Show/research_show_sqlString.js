@@ -237,8 +237,8 @@ exports.ShowStudentResearchStatus="\
         where c.student_id = cs.student_id and c.cos_code = 'DCP4121' and c.pass_fail != '不通過'),'5',\
     if(exists\
         (select raf.student_id\
-        from research_apply_form raf\
-        where raf.student_id = cs.student_id),'4',\
+        from research_apply_form raf, research_student rs\
+        where raf.student_id = cs.student_id or rs.student_id = cs.student_id),'4',\
     if(exists\
         (select c.cos_code\
         from cos_score c\
