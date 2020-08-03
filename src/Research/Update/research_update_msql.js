@@ -75,24 +75,24 @@ module.exports = {
             });
         });
     }, 
-    CreateNewResearch:function(data, callback){
-        if(typeof(data) === 'string')
-            data = JSON.parse(data);
-        const resource = pool.acquire();
-        resource.then(function(c){
-            var sql_CreateNewResearch = c.prepare(s.CreateNewResearch);
-            c.query(sql_CreateNewResearch(data), function(err, result){
-                if(err)
-                {
-                    callback(err, undefined);
-                    pool.release(c);
-                    throw err;
-                }
-                callback(null, JSON.stringify(result));
-                pool.release(c);
-            });                   
-        });
-    }, 
+    // CreateNewResearch:function(data, callback){
+    //     if(typeof(data) === 'string')
+    //         data = JSON.parse(data);
+    //     const resource = pool.acquire();
+    //     resource.then(function(c){
+    //         var sql_CreateNewResearch = c.prepare(s.CreateNewResearch);
+    //         c.query(sql_CreateNewResearch(data), function(err, result){
+    //             if(err)
+    //             {
+    //                 callback(err, undefined);
+    //                 pool.release(c);
+    //                 throw err;
+    //             }
+    //             callback(null, JSON.stringify(result));
+    //             pool.release(c);
+    //         });                   
+    //     });
+    // }, 
     CreateNewGroupResearch:function(data, callback) {
         if(typeof(data) === 'string')
             data = JSON.parse(data);
@@ -116,7 +116,6 @@ module.exports = {
                 var new_data = data;
                 new_data['student_id'] = student_list[i];
                 new_data['unique_id'] = unique_id;
-                // console.log(new_data);
                 c.query(sql_CreateNewResearch(new_data), function(err, result){
                     if(err)
                     {

@@ -286,13 +286,6 @@ m.ShowStudentResearchInfo('0516003', function(err, result){
 // m.SetResearchScoreComment({student_id:'0516075', tname:'彭文志', research_title:'讓電腦看懂羽球', first_second:1, semester:'107-1', new_score:88, new_comment:'Yee!'});
 // // 更新專題成績、評語
 
-// m.CreateNewResearch({ student_id:'0516001', tname : '彭文志', research_title : 'tesdtttt+_10', first_second:1, semester: '106-2'}, function(err, result){
-// 	if(err)
-// 		throw err;
-// 	console.log(JSON.parse(result));
-// });
-// // 申請專題同意後，新增此學生專題資料到資料庫
-
 // m.CreateNewGroupResearch({ student_id:['0516001', '0616078'], tname : '彭文志', research_title : 'tesdtttt+_10', first_second:1, semester: '106-2'}, function(err, result){
 // 	if(err)
 // 		throw err;
