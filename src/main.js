@@ -237,12 +237,12 @@ var m = require('./msql.js');
 // 	console.log(JSON.parse(result));
 // }); // delete research apply form
 
-m.ShowTeacherResearchApplyFormList('T9229', function(err, result){
-	if(err)
-		throw err;
-	console.log(JSON.parse(result));
-});
-// 回傳該教授的學生專題申請清單，status: 1表示本系生，0表示外系生，agree: 0預設 1接受 2審核中 3拒絕
+// m.ShowTeacherResearchApplyFormList('T9229', function(err, result){
+// 	if(err)
+// 		throw err;
+// 	console.log(JSON.parse(result));
+// });
+// // 回傳該教授的學生專題申請清單，status: 1表示本系生，0表示外系生，agree: 0預設 1接受 2審核中 3拒絕
 
 // m.ShowStudentResearchApplyForm('0411276', function(err, result){
 // 	if(err)
@@ -258,13 +258,13 @@ m.ShowTeacherResearchApplyFormList('T9229', function(err, result){
 // });
 // // 輸入系級，回傳該系級所有學生的專題資訊
 
-m.ShowStudentResearchInfo('0516003', function(err, result){
-	if(err)
-		throw err;
-	console.log(JSON.parse(result));
-});
-// 用學號查詢專題的標題、網址、介紹、年度，1表示本系生，0表示外系生
-// 0410835 電機系
+// m.ShowStudentResearchInfo('0516003', function(err, result){
+// 	if(err)
+// 		throw err;
+// 	console.log(JSON.parse(result));
+// });
+// // 用學號查詢專題的標題、網址、介紹、年度，1表示本系生，0表示外系生
+// // 0410835 電機系
 
 // m.ShowResearchGroup({tname:'吳凱強', research_title:'107-2尚未決定', first_second:1, semester:'107-2'}, function(err, result){
 // 	if(err)
@@ -286,12 +286,12 @@ m.ShowStudentResearchInfo('0516003', function(err, result){
 // m.SetResearchScoreComment({student_id:'0516075', tname:'彭文志', research_title:'讓電腦看懂羽球', first_second:1, semester:'107-1', new_score:88, new_comment:'Yee!'});
 // // 更新專題成績、評語
 
-// m.CreateNewGroupResearch({ student_id:['0516001', '0616078'], tname : '彭文志', research_title : 'tesdtttt+_10', first_second:1, semester: '106-2'}, function(err, result){
-// 	if(err)
-// 		throw err;
-// 	console.log(JSON.parse(result));
-// });
-// // 申請專題同意後，新增此組所有學生專題資料到資料庫並給予組別unique_id
+m.CreateNewGroupResearch({ student_id:['0516001', '0616078'], tname : '彭文志', research_title : 'tesdtttt+_10', first_second:1, semester: '106-2'}, function(err, result){
+	if(err)
+		throw err;
+	console.log(JSON.parse(result));
+});
+// 申請專題同意後，新增此組所有學生專題資料到資料庫並給予組別unique_id
 
 // m.ChangeResearch({ student_id:'0516003', tname : '彭文志new', research_title : 'tesdtttt+_10', first_second:1, semester: '106-2'});
 // // 申請換專題，修改此學生專題資料

@@ -96,7 +96,7 @@ module.exports = {
     CreateNewGroupResearch:function(data, callback) {
         if(typeof(data) === 'string')
             data = JSON.parse(data);
-        group_size = Object.keys(data['student_id']).length
+        var group_size = Object.keys(data['student_id']).length;
         var student_list = [];
         var unique_seed = '';
         for(var i = 0; i < group_size; i++){
