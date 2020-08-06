@@ -2,8 +2,6 @@ import pymysql
 import csv
 import pandas as pd
 import connect
-import checkFile
-import sys
 import copy
 
 def GetGroupFromDB(mycursor, connection):
