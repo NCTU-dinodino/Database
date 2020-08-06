@@ -357,11 +357,11 @@ var m = require('./msql.js');
 // 	console.log(JSON.parse(result));
 // }); // 輸入學生學號，回傳該學生每學期平均,有無被21,學期平均,各科成績
 
-// m.ShowStudentResearchStatus('0710003', function(err, result){
-//     if(err)
-//         throw err;
-// 	console.log(JSON.parse(result));
-// });// 輸入學生學號，回傳該學生填專題表時的狀況 
+m.ShowStudentResearchStatus('0716217', function(err, result){
+    if(err)
+        throw err;
+	console.log(JSON.parse(result));
+});// 輸入學生學號，回傳該學生填專題表時的狀況 
 // 1:代表專題1 (基礎程式設計已過) 
 // 2:代表專題2 (已修過專1成績為通過)
 // 3:代表 基礎程式設計成績待審核(還沒資料, 如果沒過之後會被取消) 
@@ -642,11 +642,12 @@ var m = require('./msql.js');
 // }); 
 // // 設定是否有申請更換教授 0:沒申請 1:有申請
 
-m.CreateNewResearchTwoFromOne({semester: '109-1'}, function(err, result){
-	if(err)
-		throw err;
-	console.log(JSON.parse(result));
-});
+// m.CreateNewResearchTwoFromOne({semester: '109-1'}, function(err, result){
+// 	if(err)
+// 		throw err;
+// 	console.log(JSON.parse(result));
+// });
+// // 新增所有沒修過專題一的人的專題二資料，輸入是新的學期
 
 // m.SetApplyPeriod({type:'graduation', begin:'2020/7/1, 8:00PM', end: '2020/9/1, 10:00PM'}, function(err, result){
 // 	if(err)

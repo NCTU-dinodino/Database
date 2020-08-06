@@ -286,8 +286,16 @@ module.exports = {
                     pool.release(c);
                     return;
                 }
-                callback(null, JSON.stringify(result));
-                pool.release(c);
+                if(result == ''){
+                    let temp = [{student_id: student_id, status: '3'}];
+                    callback(null, JSON.stringify(temp));
+                    pool.release(c);
+                }
+                else{
+                    callback(null, JSON.stringify(result));
+                    pool.release(c);
+                }
+                
             })
         })
     },
