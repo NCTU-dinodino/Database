@@ -234,6 +234,7 @@ module.exports = {
                             callback("ERROR! student_id, name, program should not be empty", undefined);
                             pool.release(c);
                         }
+                        data['grade'] = "無資料";
                         c.query(sql_CreateOtherMajorStudent(data), function(err, result){
                             if(err)
                             {
@@ -391,6 +392,24 @@ module.exports = {
         resource.then(function(c){
             var sql_SetResearchReplace = c.prepare(s.SetResearchReplace);
             c.query(sql_SetResearchReplace(data), function(err, result){
+                if(err)
+                {
+                    callback(err, undefined);
+                    pool.release(c); 
+                    throw err;
+                }
+                callback(null, JSON.stringify(result));
+                pool.release(c); 
+            });
+        });
+    }, 
+    CreateNewResearchTwoFromOne:function(data, callback){
+        if(typeof(data) === 'string')
+            data = JSON.parse(data);
+        const resource = pool.acquire();
+        resource.then(function(c){
+            var sql_CreateNewResearchTwoFromOne = c.prepare(s.CreateNewResearchTwoFromOne);
+            c.query(sql_CreateNewResearchTwoFromOne(data), function(err, result){
                 if(err)
                 {
                     callback(err, undefined);

@@ -221,7 +221,7 @@ var m = require('./msql.js');
 // 	console.log(JSON.parse(result));
 // }); // 回傳教授id, 名字對應表
 
-// m.CreateResearchApplyForm({phone:'0900', student_id:'0616078', research_title:'testttt_14', tname:':)', first_second:2, email:'wawawa@crayonSinJang', semester:'106-2', program:'應數系', name:'王小明'}, function(err,result){
+// m.CreateResearchApplyForm({phone:'0900', student_id:'0710003', research_title:'testttt_14', tname:':)', first_second:1, email:'wawawa@crayonSinJang', semester:'109-1', program:'應數系', name:'王小明'}, function(err,result){
 // 	if(err)
 // 		throw err;
 // 		//老師名字若不存在，就會拋出ERROR
@@ -286,12 +286,12 @@ var m = require('./msql.js');
 // m.SetResearchScoreComment({student_id:'0516075', tname:'彭文志', research_title:'讓電腦看懂羽球', first_second:1, semester:'107-1', new_score:88, new_comment:'Yee!'});
 // // 更新專題成績、評語
 
-m.CreateNewGroupResearch({ student_id:['0516001', '0616078'], tname : '彭文志', research_title : 'tesdtttt+_10', first_second:1, semester: '106-2'}, function(err, result){
-	if(err)
-		throw err;
-	console.log(JSON.parse(result));
-});
-// 申請專題同意後，新增此組所有學生專題資料到資料庫並給予組別unique_id
+// m.CreateNewGroupResearch({ student_id:['0516001', '0616078'], tname : '彭文志', research_title : 'tesdtttt+_10', first_second:1, semester: '106-2'}, function(err, result){
+// 	if(err)
+// 		throw err;
+// 	console.log(JSON.parse(result));
+// });
+// // 申請專題同意後，新增此組所有學生專題資料到資料庫並給予組別unique_id
 
 // m.ChangeResearch({ student_id:'0516003', tname : '彭文志new', research_title : 'tesdtttt+_10', first_second:1, semester: '106-2'});
 // // 申請換專題，修改此學生專題資料
@@ -357,16 +357,16 @@ m.CreateNewGroupResearch({ student_id:['0516001', '0616078'], tname : '彭文志
 // 	console.log(JSON.parse(result));
 // }); // 輸入學生學號，回傳該學生每學期平均,有無被21,學期平均,各科成績
 
-// m.ShowStudentResearchStatus('0516075', function(err, result){
+// m.ShowStudentResearchStatus('0710003', function(err, result){
 //     if(err)
 //         throw err;
 // 	console.log(JSON.parse(result));
 // });// 輸入學生學號，回傳該學生填專題表時的狀況 
-// // 1:代表專題1 (基礎程式設計已過) 
-// // 2:代表專題2 (已修過專1成績為通過)
-// // 3:代表 基礎程式設計成績待審核(還沒資料, 如果沒過之後會被取消) 
-// // 4:代表重複提交(當學期只能有一個專題/專題申請表)
-// // 5:代表 已修過專1專2的白目
+// 1:代表專題1 (基礎程式設計已過) 
+// 2:代表專題2 (已修過專1成績為通過)
+// 3:代表 基礎程式設計成績待審核(還沒資料, 如果沒過之後會被取消) 
+// 4:代表重複提交(當學期只能有一個專題/專題申請表)
+// 5:代表 已修過專1專2的白目
 
 // m.ShowStudentResearchList({first_second:1, semester:'106-2'},function(err,result){
 // 	if(err)
@@ -641,6 +641,12 @@ m.CreateNewGroupResearch({ student_id:['0516001', '0616078'], tname : '彭文志
 // 	console.log(JSON.parse(result));
 // }); 
 // // 設定是否有申請更換教授 0:沒申請 1:有申請
+
+m.CreateNewResearchTwoFromOne({semester: '109-1'}, function(err, result){
+	if(err)
+		throw err;
+	console.log(JSON.parse(result));
+});
 
 // m.SetApplyPeriod({type:'graduation', begin:'2020/7/1, 8:00PM', end: '2020/9/1, 10:00PM'}, function(err, result){
 // 	if(err)

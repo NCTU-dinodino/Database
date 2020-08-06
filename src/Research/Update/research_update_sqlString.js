@@ -65,9 +65,9 @@ exports.CheckStudentProgram="\
 
 exports.CreateOtherMajorStudent="\
     insert into student\
-    (student_id, sname, program, email, phone)\
+    (student_id, sname, program, email, phone, grade)\
     values\
-    (:student_id, :name, :program, :email, :phone)";
+    (:student_id, :name, :program, :email, :phone, :grade)";
 
 exports.CheckResearchOne="\
     select *\
@@ -139,4 +139,14 @@ exports.DeleteResearchApplyForm="\
 exports.SetResearchReplace="\
     update research_student set replace_pro = :replace_pro \
     where student_id = :student_id";
+
+exports.CreateNewResearchTwoFromOne="\
+    insert into research_student (class_detail, student_id, tname, research_title, first_second, intro, semester, video, file, photo, filename)\
+    select class_detail, student_id, tname, research_title, 2, intro, :semester, video, file, photo, filename \
+    from research_student as rs\
+    where rs.student_id not in (\
+        select student_id\
+        from research_student\
+        where first_second = 2)\
+    ";
     
