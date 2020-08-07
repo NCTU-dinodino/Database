@@ -236,9 +236,13 @@ exports.ShowStudentResearchStatus="\
         from cos_score c\
         where c.student_id = cs.student_id and c.cos_code = 'DCP4121' and c.pass_fail != '不通過'),'5',\
     if(exists\
+        (select rs.student_id\
+        from research_student rs\
+        where rs.student_id = cs.student_id),'4',\
+    if(exists\
         (select raf.student_id\
-        from research_apply_form raf, research_student rs\
-        where raf.student_id = cs.student_id or rs.student_id = cs.student_id),'4',\
+        from research_apply_form raf\
+        where raf.student_id = cs.student_id),'7',\
     if(exists\
         (select c.cos_code\
         from cos_score c\
@@ -250,7 +254,7 @@ exports.ShowStudentResearchStatus="\
     if( not exists\
         (select c.cos_code\
         from cos_score c\
-        where c.student_id = cs.student_id and (c.cos_code = 'DCP1236' or c.cos_code = 'DCP2106') and c.pass_fail = '通過'),'3','1')))))\
+        where c.student_id = cs.student_id and (c.cos_code = 'DCP1236' or c.cos_code = 'DCP2106') and c.pass_fail = '通過'),'3','1'))))))\
         as status \
     from cos_score cs \
     where cs.student_id = :student_id\
