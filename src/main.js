@@ -352,7 +352,7 @@ m.SetCPEStatus({student_id: '0512204', cpe_result: 1}, function(err, result){
 // });
 // // 回傳在專題或專題申請表但選課沒有選專題的學生學號
 
-// m.ShowStudentNotPassCPE({semester: '108-1'}, function(err, result){
+// m.ShowStudentNotPassCPE({semester: '107-2', cpe_status: 0}, function(err, result){
 // 	if(err)
 // 		throw err;
 // 	console.log(JSON.parse(result));
