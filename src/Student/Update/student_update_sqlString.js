@@ -109,5 +109,5 @@ exports.DeleteBulletinMsg = "\
     where unique_id = :msg_idx";
 
 exports.SetCPEStatus="\
-    update student set CPEStatus = '1' \
-    where student_id = :student_id and CPEStatus = '2'";
+    update student set CPEStatus = :cpe_result \
+    where student_id = :student_id";

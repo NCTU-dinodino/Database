@@ -324,6 +324,13 @@ var m = require('./msql.js');
 // }); 
 // // CPE未通過申請專題 first_second = 3 助理確認CPE通過後可將 3 改為 1
 
+m.SetCPEStatus({student_id: '0512204', cpe_result: 1}, function(err, result){
+ 	if(err)
+        throw err;
+ 	console.log(JSON.parse(result));
+}); 
+ // CPE未通過申請專題 first_second = 3 助理確認CPE通過後可將 3 改為 1
+
 // m.ShowResearchScoreComment({semester: '107-2', first_second: 2}, function(err, result){
 // 	if(err)
 // 		throw err;
@@ -345,6 +352,13 @@ var m = require('./msql.js');
 // });
 // // 回傳在專題或專題申請表但選課沒有選專題的學生學號
 
+// m.ShowStudentNotPassCPE({semester: '108-1'}, function(err, result){
+// 	if(err)
+// 		throw err;
+// 	console.log(JSON.parse(result));
+// });
+// 回傳有申請專題但沒通過或者沒選基礎程式設計的學生姓名、學號以及CPE狀態
+
 // m.ShowStudentMentor('0516003', function(err, result){
 // 	if(err)
 // 		throw err;
@@ -357,11 +371,11 @@ var m = require('./msql.js');
 // 	console.log(JSON.parse(result));
 // }); // 輸入學生學號，回傳該學生每學期平均,有無被21,學期平均,各科成績
 
-m.ShowStudentResearchStatus('0716217', function(err, result){
-    if(err)
-        throw err;
-	console.log(JSON.parse(result));
-});// 輸入學生學號，回傳該學生填專題表時的狀況 
+// m.ShowStudentResearchStatus('0716217', function(err, result){
+//    if(err)
+//        throw err;
+//	console.log(JSON.parse(result));
+// });// 輸入學生學號，回傳該學生填專題表時的狀況 
 // 1:代表專題1 (基礎程式設計已過) 
 // 2:代表專題2 (已修過專1成績為通過)
 // 3:代表 基礎程式設計成績待審核(還沒資料, 如果沒過之後會被取消) 

@@ -384,11 +384,13 @@ module.exports = {
             });
         });
     },
-    ShowStudentNotPassCPE: function(student_id, callback) {
+    ShowStudentNotPassCPE: function(data, callback) {
+        if(typeof(data) === 'string')
+            data = JSON.parse(data);
         const resource = pool.acquire();
         resource.then(function(c) {
             var sql_ShowStudentNotPassCPE = c.prepare(s.ShowStudentNotPassCPE);
-            c.query(sql_ShowStudentNotPassCPE({ semester }), function(err, result) {
+            c.query(sql_ShowStudentNotPassCPE(data), function(err, result) {
                 if (err){
                     callback(err, undefined);
                     pool.release(c);
