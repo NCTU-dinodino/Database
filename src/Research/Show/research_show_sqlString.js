@@ -198,7 +198,7 @@ exports.ShowTeacherResearchApplyFormList="\
             and t.teacher_id = :teacher_id\
         ) as a, \
         (\
-            select sname, student_id, phone, email, program, CPEStatus,\
+            select sname, student_id, phone, email, program, CPEStatus\
             from student\
         ) as s \
         where s.student_id = a.student_id \
