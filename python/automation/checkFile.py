@@ -59,13 +59,16 @@ def convertExcelToCsv(input_path, output_path):
     convert_type = '抵免' in output_path or 'offset' in output_path
     df = None
     if convert_type == False:
-        check_column = '當期課號'
-        df_varify = pd.read_excel(input_path)
-        df_key = list(df_varify.keys())
-        if check_column in df_key:
-            df = pd.read_excel(input_path, dtype={'學號': object, '當期課號': object})
+        if 'research_student_list' not in output_path:
+            check_column = '當期課號'
+            df_varify = pd.read_excel(input_path)
+            df_key = list(df_varify.keys())
+            if check_column in df_key:
+                df = pd.read_excel(input_path, dtype={'學號': object, '當期課號': object})
+            else:
+                df = pd.read_excel(input_path, dtype={'學號': object})
         else:
-            df = pd.read_excel(input_path, dtype={'學號': object})
+            df = pd.read_excel(input_path, dtype={'學號': object, '學期': object, '專題一或二': int})
     else:
         df = pd.read_excel(input_path, encoding = 'utf-8', dtype = {'學號':object, '修課年度':object, '修課學期':object, '修課當期課號':object})
         
