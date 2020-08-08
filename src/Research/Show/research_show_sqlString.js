@@ -236,9 +236,13 @@ exports.ShowStudentResearchStatus="\
         from cos_score c\
         where c.student_id = cs.student_id and c.cos_code = 'DCP4121' and c.pass_fail != '不通過'),'5',\
     if(exists\
+        (select rs.student_id\
+        from research_student rs\
+        where rs.student_id = cs.student_id),'4',\
+    if(exists\
         (select raf.student_id\
-        from research_apply_form raf, research_student rs\
-        where raf.student_id = cs.student_id or rs.student_id = cs.student_id),'4',\
+        from research_apply_form raf\
+        where raf.student_id = cs.student_id),'7',\
     if(exists\
         (select c.cos_code\
         from cos_score c\
@@ -250,7 +254,7 @@ exports.ShowStudentResearchStatus="\
     if( not exists\
         (select c.cos_code\
         from cos_score c\
-        where c.student_id = cs.student_id and (c.cos_code = 'DCP1236' or c.cos_code = 'DCP2106') and c.pass_fail = '通過'),'3','1')))))\
+        where c.student_id = cs.student_id and (c.cos_code = 'DCP1236' or c.cos_code = 'DCP2106') and c.pass_fail = '通過'),'3','1'))))))\
         as status \
     from cos_score cs \
     where cs.student_id = :student_id\
@@ -281,14 +285,17 @@ exports.ShowOnCosButNotInDBStudentList = "\
             select student_id\
             from research_student\
             where semester = :semester\
+            and first_second = :first_second\
         )\
         and roc.student_id not in\
         (\
             select student_id\
             from research_apply_form\
             where semester = :semester\
+            and first_second = :first_second\
         )\
         and roc.semester = :semester\
+        and roc.first_second = :first_second\
     ) as t\
     where s.student_id = t.student_id\
     ";
@@ -301,6 +308,7 @@ exports.ShowInDBButNotOnCosStudentList = "\
             from research_student as rs\
             where add_status = 0\
             and semester = :semester\
+            and first_second = :first_second\
         union\
             select raf.student_id\
             from research_apply_form as raf\
@@ -308,8 +316,10 @@ exports.ShowInDBButNotOnCosStudentList = "\
                 select student_id\
                 from rs_on_cos\
                 where semester = :semester\
+                and first_second = :first_second\
             )\
             and raf.semester = :semester\
+            and raf.first_second = :first_second\
         ) t\
     ) as t\
     where s.student_id = t.student_id\

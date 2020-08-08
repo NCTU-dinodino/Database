@@ -221,7 +221,7 @@ var m = require('./msql.js');
 // 	console.log(JSON.parse(result));
 // }); // 回傳教授id, 名字對應表
 
-// m.CreateResearchApplyForm({phone:'0900', student_id:'0710003', research_title:'testttt_14', tname:':)', first_second:1, email:'wawawa@crayonSinJang', semester:'109-1', program:'應數系', name:'王小明'}, function(err,result){
+// m.CreateResearchApplyForm({phone:'0900', student_id:'0716217', research_title:'testttt_14', tname:':)', first_second:1, email:'wawawa@crayonSinJang', semester:'109-1', program:'C', name:'OAO'}, function(err,result){
 // 	if(err)
 // 		throw err;
 // 		//老師名字若不存在，就會拋出ERROR
@@ -286,7 +286,7 @@ var m = require('./msql.js');
 // m.SetResearchScoreComment({student_id:'0516075', tname:'彭文志', research_title:'讓電腦看懂羽球', first_second:1, semester:'107-1', new_score:88, new_comment:'Yee!'});
 // // 更新專題成績、評語
 
-// m.CreateNewGroupResearch({ student_id:['0516001', '0616078'], tname : '彭文志', research_title : 'tesdtttt+_10', first_second:1, semester: '106-2'}, function(err, result){
+// m.CreateNewGroupResearch({ student_id:['0716217'], tname : '彭文志', research_title : 'tesdtttt+_10', first_second:1, semester: '109-1'}, function(err, result){
 // 	if(err)
 // 		throw err;
 // 	console.log(JSON.parse(result));
@@ -331,14 +331,14 @@ var m = require('./msql.js');
 // }); 
 // // 回傳專題成績列表:教授名字, 學生姓名學號, 成績, 評論
 
-// m.ShowOnCosButNotInDBStudentList({semester: '108-1'}, function(err, result){
+// m.ShowOnCosButNotInDBStudentList({semester: '109-1', first_second: 1}, function(err, result){
 // 	if(err)
 // 		throw err;
 // 	console.log(JSON.parse(result));
 // });
 // // 回傳選課有選專題但不在專題和專題申請表的學生學號
 
-// m.ShowInDBButNotOnCosStudentList({semester: '108-1'}, function(err, result){
+// m.ShowInDBButNotOnCosStudentList({semester: '109-1', first_second: 1}, function(err, result){
 // 	if(err)
 // 		throw err;
 // 	console.log(JSON.parse(result));
@@ -365,7 +365,8 @@ m.ShowStudentResearchStatus('0716217', function(err, result){
 // 1:代表專題1 (基礎程式設計已過) 
 // 2:代表專題2 (已修過專1成績為通過)
 // 3:代表 基礎程式設計成績待審核(還沒資料, 如果沒過之後會被取消) 
-// 4:代表重複提交(當學期只能有一個專題/專題申請表)
+// 4:代表重複提交(當學期只能有一個專題)
+// 7:代表重複提交(當學期只能有一個專題申請表)
 // 5:代表 已修過專1專2的白目
 
 // m.ShowStudentResearchList({first_second:1, semester:'106-2'},function(err,result){
