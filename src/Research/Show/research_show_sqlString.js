@@ -198,7 +198,7 @@ exports.ShowTeacherResearchApplyFormList="\
             and t.teacher_id = :teacher_id\
         ) as a, \
         (\
-            select sname, student_id, phone, email, program \
+            select sname, student_id, phone, email, program, CPEStatus,\
             from student\
         ) as s \
         where s.student_id = a.student_id \
@@ -313,4 +313,17 @@ exports.ShowInDBButNotOnCosStudentList = "\
         ) t\
     ) as t\
     where s.student_id = t.student_id\
+    ";
+
+exports.ShowStudentNotPassCPE = "\
+    select s.student_id, s.sname, s.CPEStatus\
+    from \
+    (\
+        select student_id, sname, CPEStatus\
+        from student\
+        where CPEStatus IN (0, 2)\
+    )\
+    as s,\
+    research_apply_form as a\
+    where s.student_id = a.student_id and a.semester = :semester\
     ";

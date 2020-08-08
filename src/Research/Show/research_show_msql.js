@@ -1,4 +1,5 @@
 var CONST = require('../../constant.js')
+var CONST = require('../../constant.js')
 
 var psw = require(CONST.FILE_PATH);
 var s = require('./research_show_sqlString.js');
@@ -382,5 +383,20 @@ module.exports = {
                 pool.release(c);
             });
         });
-    }, 
+    },
+    ShowStudentNotPassCPE: function(student_id, callback) {
+        const resource = pool.acquire();
+        resource.then(function(c) {
+            var sql_ShowStudentNotPassCPE = c.prepare(s.ShowStudentNotPassCPE);
+            c.query(sql_ShowStudentNotPassCPE({ semester }), function(err, result) {
+                if (err){
+                    callback(err, undefined);
+                    pool.release(c);
+                    return;
+                }
+                callback(null, JSON.stringify(result));
+                pool.release(c);
+            })
+        })
+    },
 };
