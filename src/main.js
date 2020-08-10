@@ -324,12 +324,12 @@ var m = require('./msql.js');
 // }); 
 // // CPE未通過申請專題 first_second = 3 助理確認CPE通過後可將 3 改為 1
 
-m.SetCPEStatus({student_id: '0512204', cpe_result: 1}, function(err, result){
- 	if(err)
-        throw err;
- 	console.log(JSON.parse(result));
-}); 
- // CPE未通過申請專題 first_second = 3 助理確認CPE通過後可將 3 改為 1
+// m.SetCPEStatus({student_id: '0512204', cpe_result: 1}, function(err, result){
+//  	if(err)
+//         throw err;
+//  	console.log(JSON.parse(result));
+// }); 
+// // CPE未通過申請專題 first_second = 3 助理確認CPE通過後可將 3 改為 1
 
 // m.ShowResearchScoreComment({semester: '107-2', first_second: 2}, function(err, result){
 // 	if(err)
@@ -704,7 +704,7 @@ m.SetCPEStatus({student_id: '0512204', cpe_result: 1}, function(err, result){
 //     console.log(JSON.parse(result));
 // });
 
-// m.InsertNewData({file_name: '專題選課名單範例.xlsx', data_type: "專題選課名單", semester: '108-1'});
+m.InsertNewData({file_name: '專題選課名單.xlsx', data_type: "專題選課名單", semester: '109-1'});
 // // 執行自動化匯入，因為是offline的作法，所以沒有call back function
 // // 參數：
 // // file_name: 檔案名稱
