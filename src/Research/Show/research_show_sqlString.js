@@ -326,7 +326,7 @@ exports.ShowInDBButNotOnCosStudentList = "\
     ";
 
 exports.ShowStudentNotPassCPE = "\
-    select s.student_id, s.sname, s.CPEStatus\
+    select s.student_id, s.sname\
     from \
     student as s, \
     research_apply_form as a\
