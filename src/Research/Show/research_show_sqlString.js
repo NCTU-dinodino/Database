@@ -326,14 +326,9 @@ exports.ShowInDBButNotOnCosStudentList = "\
     ";
 
 exports.ShowStudentNotPassCPE = "\
-    select s.student_id, s.sname\
+    select s.student_id, s.sname, s.CPEStatus\
     from \
-    (\
-        select student_id, sname, CPEStatus\
-        from student\
-        where CPEStatus IN (0, 2)\
-    )\
-    as s,\
+    student as s, \
     research_apply_form as a\
     where s.student_id = a.student_id and a.semester = :semester and s.CPEStatus = :cpe_status\
     ";
