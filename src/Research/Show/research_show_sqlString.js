@@ -285,14 +285,14 @@ exports.ShowOnCosButNotInDBStudentList = "\
             select student_id\
             from research_student\
             where semester = :semester\
-            and first_second = :first_second\
+            and (first_second = :first_second or first_second = 3)\
         )\
         and roc.student_id not in\
         (\
             select student_id\
             from research_apply_form\
             where semester = :semester\
-            and first_second = :first_second\
+            and (first_second = :first_second or first_second = 3)\
         )\
         and roc.semester = :semester\
         and roc.first_second = :first_second\
@@ -308,7 +308,7 @@ exports.ShowInDBButNotOnCosStudentList = "\
             from research_student as rs\
             where add_status = 0\
             and semester = :semester\
-            and first_second = :first_second\
+            and (first_second = :first_second or first_second = 3)\
         union\
             select raf.student_id\
             from research_apply_form as raf\
@@ -319,7 +319,7 @@ exports.ShowInDBButNotOnCosStudentList = "\
                 and first_second = :first_second\
             )\
             and raf.semester = :semester\
-            and raf.first_second = :first_second\
+            and (raf.first_second = :first_second or raf.first_second = 3)\
         ) t\
     ) as t\
     where s.student_id = t.student_id\
