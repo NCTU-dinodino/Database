@@ -65,8 +65,7 @@ def InsertToDB(year, semester, file_path, mycursor, connection):
     sql6 = """UPDATE research_student
             SET add_status = 1
             WHERE student_id LIKE %s AND
-            semester LIKE %s AND
-            first_second = %s;
+            semester LIKE %s AND first_second = %s;
     """
     sql7 = """insert into rs_on_cos
                 select * from trs_on_cos as t
@@ -76,10 +75,15 @@ def InsertToDB(year, semester, file_path, mycursor, connection):
                 first_second = t.first_second;
     """
     sql8 = "DELETE FROM rs_on_cos WHERE semester like %s AND first_second = %s;"
+    sql9 = """UPDATE research_student
+            SET add_status = 0
+            WHERE semester = %s AND first_second = %s;
+    """
 
     try:
         if empty:
             mycursor.execute(sql8, (semester, first_second))
+            mycursor.execute(sql9, (semester, first_second))
         else:
             mycursor.execute(sql1)
             mycursor.execute(sql2)
