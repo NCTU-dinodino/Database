@@ -30,10 +30,11 @@ def InsertToDB(year, semester, file_path, mycursor, connection):
     empty = False
     semester = year + '-' + semester
     df = pd.read_csv(file_path, dtype={'學號': object, '學期': object, '專題一或二': int})
+    first_second = int(df.loc[0, '專題一或二'])
     if df.loc[0, '學號'] == '空':
-        first_second = int(df.loc[0, '專題一或二'])
         empty = True
 
+    sql0 = "DROP TEMPORARY TABLE IF EXISTS trs_on_cos;"
     sql1 = """CREATE TEMPORARY TABLE trs_on_cos(
                 student_id varchar(10), 
                 semester varchar(10), 
@@ -57,16 +58,10 @@ def InsertToDB(year, semester, file_path, mycursor, connection):
             IGNORE 1 LINES;
     """
     sql4 = "SELECT * FROM trs_on_cos;"
-    sql5 = """SELECT * FROM research_student
-            WHERE student_id LIKE %s AND
-            semester LIKE %s AND
-            first_second = %s;
-    """
     sql6 = """UPDATE research_student
             SET add_status = 1
             WHERE student_id LIKE %s AND
-            semester LIKE %s AND
-            first_second = %s;
+            semester LIKE %s AND first_second = %s;
     """
     sql7 = """insert into rs_on_cos
                 select * from trs_on_cos as t
@@ -76,23 +71,34 @@ def InsertToDB(year, semester, file_path, mycursor, connection):
                 first_second = t.first_second;
     """
     sql8 = "DELETE FROM rs_on_cos WHERE semester like %s AND first_second = %s;"
+    sql9 = """UPDATE research_student
+            SET add_status = 0
+            WHERE semester = %s AND first_second = %s;
+    """
+    sql10 = """UPDATE research_student
+            SET add_status = 0
+            WHERE semester = %s AND first_second = %s AND student_id NOT IN(
+                SELECT student_id FROM trs_on_cos
+            );
+    """
 
     try:
+        mycursor.execute(sql0)
+        mycursor.execute(sql1)
         if empty:
             mycursor.execute(sql8, (semester, first_second))
+            mycursor.execute(sql9, (semester, first_second))
         else:
-            mycursor.execute(sql1)
             mycursor.execute(sql2)
             mycursor.execute(sql3.format(file_path))
+            mycursor.execute(sql8, (semester, first_second))
             mycursor.execute(sql7)
             affect_count = mycursor.rowcount
             mycursor.execute(sql4)
             rs_on_cos = mycursor.fetchall()
             for item in rs_on_cos:
-                mycursor.execute(sql5, (item[0], item[1], int(item[2])))
-                tmp = mycursor.fetchall()
-                if tmp != ():
-                    mycursor.execute(sql6, (item[0], item[1], int(item[2])))
+                mycursor.execute(sql6, (item[0], item[1], int(item[2])))
+            mycursor.execute(sql10, (semester, first_second))
     except pymysql.InternalError as error:
         code, message = error.args
         record_status = 0
