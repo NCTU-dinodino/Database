@@ -57,11 +57,10 @@ def InsertToDB(year, semester, file_path, mycursor, connection):
             LINES TERMINATED BY '\n'
             IGNORE 1 LINES;
     """
-    sql4 = "SELECT * FROM trs_on_cos;"
     sql6 = """UPDATE research_student
             SET add_status = 1
-            WHERE student_id LIKE %s AND
-            semester LIKE %s AND first_second = %s;
+            WHERE student_id IN (SELECT student_id FROM trs_on_cos) AND
+            semester LIKE %s AND (first_second = %s OR first_second = 3);
     """
     sql7 = """insert into rs_on_cos
                 select * from trs_on_cos as t
@@ -73,11 +72,11 @@ def InsertToDB(year, semester, file_path, mycursor, connection):
     sql8 = "DELETE FROM rs_on_cos WHERE semester like %s AND first_second = %s;"
     sql9 = """UPDATE research_student
             SET add_status = 0
-            WHERE semester = %s AND first_second = %s;
+            WHERE semester = %s AND (first_second = %s OR first_second = 3);
     """
     sql10 = """UPDATE research_student
             SET add_status = 0
-            WHERE semester = %s AND first_second = %s AND student_id NOT IN(
+            WHERE semester = %s AND (first_second = %s OR first_second = 3) AND student_id NOT IN(
                 SELECT student_id FROM trs_on_cos
             );
     """
@@ -94,10 +93,7 @@ def InsertToDB(year, semester, file_path, mycursor, connection):
             mycursor.execute(sql8, (semester, first_second))
             mycursor.execute(sql7)
             affect_count = mycursor.rowcount
-            mycursor.execute(sql4)
-            rs_on_cos = mycursor.fetchall()
-            for item in rs_on_cos:
-                mycursor.execute(sql6, (item[0], item[1], int(item[2])))
+            mycursor.execute(sql6, (semester, first_second))
             mycursor.execute(sql10, (semester, first_second))
     except pymysql.InternalError as error:
         code, message = error.args
