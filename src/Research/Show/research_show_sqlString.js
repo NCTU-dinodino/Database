@@ -325,7 +325,7 @@ exports.ShowInDBButNotOnCosStudentList = "\
     where s.student_id = t.student_id\
     ";
 
-exports.ShowStudentNotPassCPE = "\
+exports.ShowResearchStudentGivenSemesterCPE = "\
     select s.student_id, s.sname\
     from \
     student as s, \

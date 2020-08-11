@@ -384,13 +384,13 @@ module.exports = {
             });
         });
     },
-    ShowStudentNotPassCPE: function(data, callback) {
+    ShowResearchStudentGivenSemesterCPE: function(data, callback) {
         if(typeof(data) === 'string')
             data = JSON.parse(data);
         const resource = pool.acquire();
         resource.then(function(c) {
-            var sql_ShowStudentNotPassCPE = c.prepare(s.ShowStudentNotPassCPE);
-            c.query(sql_ShowStudentNotPassCPE(data), function(err, result) {
+            var sql_ShowResearchStudentGivenSemesterCPE = c.prepare(s.ShowResearchStudentGivenSemesterCPE);
+            c.query(sql_ShowResearchStudentGivenSemesterCPE(data), function(err, result) {
                 if (err){
                     callback(err, undefined);
                     pool.release(c);
