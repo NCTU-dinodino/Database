@@ -37,7 +37,8 @@ def initialLog(calling_file, record_status, year, semester, mycursor, connection
         "on_cos_data": "當期修課資料",
         "student": "學生資料",
         "offset": "抵免免修資料",
-        "en_certificate": "英文換修資料"
+        "en_certificate": "英文換修資料",
+        "research_student_list": "專題選課名單"
     }
 
     calling_file = calling_file.split('/')[-1]
@@ -72,7 +73,7 @@ def convertExcelToCsv(input_path, output_path):
     else:
         df = pd.read_excel(input_path, encoding = 'utf-8', dtype = {'學號':object, '修課年度':object, '修課學期':object, '修課當期課號':object})
         
-    df.to_csv(output_path, index=False)
+    df.to_csv(output_path, index=False, encoding = 'utf-8')
 
 if __name__ == '__main__':
     """./upload/106B、106暑期資訊學院全體學生修課成績資料-資工學院-20181022.xlsx"""
