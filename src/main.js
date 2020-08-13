@@ -4,7 +4,7 @@
 
 var m = require('./msql.js');
 
-// m.ShowUserInfo('0716003', function(err, result){
+// m.ShowUserInfo('0840011', function(err, result){
 //     if(err)
 //         throw err;
 //     console.log(JSON.parse(result));
@@ -197,7 +197,7 @@ var m = require('./msql.js');
 // 	console.log(JSON.parse(result));
 // }); // SetTeacherPhoto(data, callback) 設定教授照片，回傳query結果
 
-// m.ShowTeacherInfoResearchCnt({teacher_id:''},function(err, result){
+// m.ShowTeacherInfoResearchCnt({teacher_id:'T9229'},function(err, result){
 // 	if(err)
 // 		throw err;
 // 	console.log(JSON.parse(result)[0]);
@@ -221,12 +221,11 @@ var m = require('./msql.js');
 // 	console.log(JSON.parse(result));
 // }); // 回傳教授id, 名字對應表
 
-// m.CreateResearchApplyForm({phone:'0900', student_id:'0716217', research_title:'testttt_14', tname:':)', first_second:1, email:'wawawa@crayonSinJang', semester:'109-1', program:'C', name:'OAO'}, function(err,result){
+// m.CreateGroupResearchApplyForm([{phone:'0900', student_id:'0716217', research_title:'testttt_14', tname:'彭文志', first_second:1, email:'wawawa@crayonSinJang', semester:'109-2', program:'C', name:'OAO'}, {phone:'0988', student_id:'0716221', research_title:'testttt_14', tname:'彭文志', first_second:1, email:'wawawa@crayon', semester:'109-2', program:'C', name:'QAQ'}], function(err,result){
 // 	if(err)
 // 		throw err;
-// 		//老師名字若不存在，就會拋出ERROR
 // 	console.log(JSON.parse(result));
-// }); // create research apply form
+// });
 
 // m.SetResearchApplyFormStatus({research_title:'我是專題標題2~', tname:'彭文志', first_second:2, agree:3, semester:'106-2'});
 // // // set research apply form agree bit  0預設 1接受 2審核中 3拒絕
@@ -237,11 +236,11 @@ var m = require('./msql.js');
 // 	console.log(JSON.parse(result));
 // }); // delete research apply form
 
-// m.ShowTeacherResearchApplyFormList('T9229', function(err, result){
-// 	if(err)
-// 		throw err;
-// 	console.log(JSON.parse(result));
-// });
+m.ShowTeacherResearchApplyFormList('T9229', function(err, result){
+	if(err)
+		throw err;
+	console.log(JSON.parse(result));
+});
 // // 回傳該教授的學生專題申請清單，status: 1表示本系生，0表示外系生，agree: 0預設 1接受 2審核中 3拒絕
 
 // m.ShowStudentResearchApplyForm('0411276', function(err, result){
@@ -286,12 +285,12 @@ var m = require('./msql.js');
 // m.SetResearchScoreComment({student_id:'0516075', tname:'彭文志', research_title:'讓電腦看懂羽球', first_second:1, semester:'107-1', new_score:88, new_comment:'Yee!'});
 // // 更新專題成績、評語
 
-// m.CreateNewGroupResearch({ student_id:['0716217'], tname : '彭文志', research_title : 'tesdtttt+_10', first_second:1, semester: '109-1'}, function(err, result){
+// m.CreateNewGroupResearch({ student_id:['0716011', '0716012', '0716014'], tname : '彭文志', research_title : 'test2', first_second:1, semester: '109-2'}, function(err, result){
 // 	if(err)
 // 		throw err;
 // 	console.log(JSON.parse(result));
 // });
-// // 申請專題同意後，新增此組所有學生專題資料到資料庫並給予組別unique_id
+// 申請專題同意後，新增此組所有學生專題資料到資料庫並給予組別unique_id
 
 // m.ChangeResearch({ student_id:'0516003', tname : '彭文志new', research_title : 'tesdtttt+_10', first_second:1, semester: '106-2'});
 // // 申請換專題，修改此學生專題資料
@@ -350,7 +349,7 @@ var m = require('./msql.js');
 // 		throw err;
 // 	console.log(JSON.parse(result));
 // });
-// // 回傳在專題或專題申請表但選課沒有選專題的學生學號
+// 回傳在專題或專題申請表但選課沒有選專題的學生學號
 
 // m.ShowStudentNotPassCPE({semester: '107-2', cpe_status: 0}, function(err, result){
 // 	if(err)
@@ -704,13 +703,13 @@ var m = require('./msql.js');
 //     console.log(JSON.parse(result));
 // });
 
-m.InsertNewData({file_name: '專題選課名單.xlsx', data_type: "專題選課名單", semester: '109-1'});
-// // 執行自動化匯入，因為是offline的作法，所以沒有call back function
-// // 參數：
-// // file_name: 檔案名稱
-// // data_type:
-// //      "課程成績資料", "新老師資料", "學生資料", "抵免免修資料", "英文換修資料", "專題選課名單"
-// // semester: "108-1", "108-2", "109-1" ... 
+// m.InsertNewData({file_name: '專題選課名單.xlsx', data_type: "專題選課名單", semester: '109-1'});
+// 執行自動化匯入，因為是offline的作法，所以沒有call back function
+// 參數：
+// file_name: 檔案名稱
+// data_type:
+//      "課程成績資料", "新老師資料", "學生資料", "抵免免修資料", "英文換修資料", "專題選課名單"
+// semester: "108-1", "108-2", "109-1" ... 
 
 // m.ShowAllDataLog(function(err, result){
 //     if(err)

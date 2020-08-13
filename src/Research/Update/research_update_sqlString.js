@@ -118,7 +118,7 @@ exports.CreateResearchFile="\
 
 exports.CreateResearchApplyForm="\
     insert into research_apply_form\
-    values(:student_id, :research_title, :tname, 2, :new_first_second, :semester)";
+    values(:student_id, :research_title, :tname, 2, :new_first_second, :semester, :unique_id)";
 
 exports.AddPhoneEmail="\
     update student set phone = :phone, email = :email\
