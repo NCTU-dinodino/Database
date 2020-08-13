@@ -188,7 +188,7 @@ exports.ShowTeacherResearchApplyFormList="\
     select tmp.*, rs.replace_pro\
     from\
     (\
-        select a.student_id, s.sname, s.program, a.research_title, a.teacher_id, a.tname, a.first_second, a.agree, s.phone, s.email, a.semester, a.unique_id,\
+        select a.student_id, s.sname, s.program, s.CPEStatus, a.research_title, a.teacher_id, a.tname, a.first_second, a.agree, s.phone, s.email, a.semester, a.unique_id,\
         if(substring(s.program, 1, 1)='A' or substring(s.program, 1, 1)='B' or substring(s.program, 1, 1)='C' or substring(s.program, 1, 1)='D', 1, 0) as status\
         from \
         (\
