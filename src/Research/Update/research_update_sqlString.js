@@ -141,8 +141,8 @@ exports.SetResearchReplace="\
     where student_id = :student_id";
 
 exports.CreateNewResearchTwoFromOne="\
-    insert into research_student (class_detail, student_id, tname, research_title, first_second, intro, semester, video, file, photo, filename)\
-    select class_detail, student_id, tname, research_title, 2, intro, :semester, video, file, photo, filename \
+    insert into research_student (class_detail, student_id, tname, research_title, first_second, intro, semester, video, file, photo, filename, unique_id)\
+    select class_detail, student_id, tname, research_title, 2, intro, :semester, video, file, photo, filename, unique_id \
     from research_student as rs\
     where rs.student_id not in (\
         select student_id\
