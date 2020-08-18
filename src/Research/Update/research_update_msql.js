@@ -284,7 +284,7 @@ module.exports = {
                                     pool.release(c);
                                     throw err;
                                 }
-                                data['new_first_second'] = 3;
+                                data['new_first_second'] = 1;
                                 c.query(sql_CreateResearchApplyForm(data), function(err, result){
                                     if(err)
                                     {
@@ -306,10 +306,8 @@ module.exports = {
                                     pool.release(c);
                                     throw err;
                                 }
-                                if(result == '')
-                                    data['new_first_second'] = 3;
-                                else
-                                    data['new_first_second'] = 1;
+                                
+                                data['new_first_second'] = 1;
                                 
                                 c.query(sql_AddPhoneEmail(data), function(err, result){
                                     if(err)
