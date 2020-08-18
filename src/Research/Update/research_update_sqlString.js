@@ -132,9 +132,8 @@ exports.SetResearchApplyFormStatus="\
 
 exports.DeleteResearchApplyForm="\
     delete from research_apply_form \
-    where research_title = :research_title and \
-    tname = :tname and first_second = :first_second \
-    and semester = :semester";
+    where semester = :semester \
+    and unique_id = :unique_id";
 
 exports.SetResearchReplace="\
     update research_student set replace_pro = :replace_pro \

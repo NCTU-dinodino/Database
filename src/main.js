@@ -221,26 +221,26 @@ var m = require('./msql.js');
 // 	console.log(JSON.parse(result));
 // }); // 回傳教授id, 名字對應表
 
-// m.CreateGroupResearchApplyForm([{phone:'0900', student_id:'0716217', research_title:'testttt_14', tname:'彭文志', first_second:1, email:'wawawa@crayonSinJang', semester:'109-2', program:'C', name:'OAO'}, {phone:'0988', student_id:'0716221', research_title:'testttt_14', tname:'彭文志', first_second:1, email:'wawawa@crayon', semester:'109-2', program:'C', name:'QAQ'}], function(err,result){
+// m.CreateGroupResearchApplyForm([{phone:'0961316177', student_id:'0616078', research_title:'testttt_14', tname:'彭文志', first_second:1, email:'tommytyc.cs06@nctu.edu.tw', semester:'109-2', program:'B', name:'唐宇謙'}, {phone:'0988', student_id:'0716221', research_title:'testttt_14', tname:'彭文志', first_second:1, email:'wawawa@crayon', semester:'109-2', program:'C', name:'QAQ'}], function(err,result){
 // 	if(err)
 // 		throw err;
 // 	console.log(JSON.parse(result));
-// });
+// }); // 以組為單位創建專題申請表
 
 // m.SetResearchApplyFormStatus({research_title:'我是專題標題2~', tname:'彭文志', first_second:2, agree:3, semester:'106-2'});
 // // // set research apply form agree bit  0預設 1接受 2審核中 3拒絕
 
-// m.DeleteResearchApplyForm({research_title:'testttt_14', tname:':)', first_second:2, semester:'106-2'}, function(err, result){
-// 	if(err)
-// 		throw err;
-// 	console.log(JSON.parse(result));
-// }); // delete research apply form
-
-m.ShowTeacherResearchApplyFormList('T9229', function(err, result){
+m.DeleteResearchApplyForm({semester:'109-2', unique_id: '603b1c3c80284d042609da98d3fde571'}, function(err, result){
 	if(err)
 		throw err;
 	console.log(JSON.parse(result));
-});
+}); // delete research apply form
+
+// m.ShowTeacherResearchApplyFormList('T9229', function(err, result){
+// 	if(err)
+// 		throw err;
+// 	console.log(JSON.parse(result));
+// });
 // // 回傳該教授的學生專題申請清單，status: 1表示本系生，0表示外系生，agree: 0預設 1接受 2審核中 3拒絕
 
 // m.ShowStudentResearchApplyForm('0411276', function(err, result){
