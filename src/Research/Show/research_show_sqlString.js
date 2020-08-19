@@ -261,7 +261,7 @@ exports.ShowStudentResearchStatus="\
     ";
 
 exports.ShowStudentResearchList = "\
-    select s.phone, s.student_id, rs.research_title, rs.tname, rs.first_second,\
+    select s.sname, s.phone, s.student_id, rs.research_title, rs.tname, rs.first_second,\
         s.email, rs.semester\
     from student as s, research_student as rs\
     where s.student_id = rs.student_id\
