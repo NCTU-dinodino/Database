@@ -219,7 +219,7 @@ exports.ShowTeacherResearchApplyFormList="\
     order by tmp.research_title";
 
 exports.ShowStudentResearchApplyForm="\
-    select a.student_id, s.sname, a.research_title, a.tname, a.agree, a.first_second, s.phone, s.email, a.semester,s.status\
+    select a.student_id, s.sname, a.research_title, a.tname, a.agree, a.first_second, s.phone, s.email, a.semester,s.status, a.unique_id\
     from research_apply_form as a, \
     (\
         select sname, student_id, phone, email,if(substring(program, 1, 1)='A' or substring(program, 1, 1)='B' or substring(program, 1, 1)='C' or substring(program, 1, 1)='D', 1, 0) as status\
