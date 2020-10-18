@@ -227,14 +227,14 @@ var m = require('./msql.js');
 // 	console.log(JSON.parse(result));
 // }); // 以組為單位創建專題申請表
 
-// m.SetResearchApplyFormStatus({research_title:'我是專題標題2~', tname:'彭文志', first_second:2, agree:3, semester:'106-2'});
-// // // set research apply form agree bit  0預設 1接受 2審核中 3拒絕
+m.SetResearchApplyFormStatus({semester:'109-2', unique_id: '603b1c3c80284d042609da98d3fde571', agree: 3});
+// // set research apply form agree bit  0預設 1接受 2審核中 3拒絕
 
-m.DeleteResearchApplyForm({semester:'109-2', unique_id: '603b1c3c80284d042609da98d3fde571'}, function(err, result){
-	if(err)
-		throw err;
-	console.log(JSON.parse(result));
-}); // delete research apply form
+// m.DeleteResearchApplyForm({semester:'109-2', unique_id: '603b1c3c80284d042609da98d3fde571'}, function(err, result){
+// 	if(err)
+// 		throw err;
+// 	console.log(JSON.parse(result));
+// }); // delete research apply form
 
 // m.ShowTeacherResearchApplyFormList('T9229', function(err, result){
 // 	if(err)
@@ -243,7 +243,7 @@ m.DeleteResearchApplyForm({semester:'109-2', unique_id: '603b1c3c80284d042609da9
 // });
 // // 回傳該教授的學生專題申請清單，status: 1表示本系生，0表示外系生，agree: 0預設 1接受 2審核中 3拒絕
 
-// m.ShowStudentResearchApplyForm('0411276', function(err, result){
+// m.ShowStudentResearchApplyForm('0616078', function(err, result){
 // 	if(err)
 // 		throw err;
 // 	console.log(JSON.parse(result));
@@ -382,7 +382,7 @@ m.DeleteResearchApplyForm({semester:'109-2', unique_id: '603b1c3c80284d042609da9
 // 7:代表重複提交(當學期只能有一個專題申請表)
 // 5:代表 已修過專1專2的白目
 
-// m.ShowStudentResearchList({first_second:1, semester:'106-2'},function(err,result){
+// m.ShowStudentResearchList({first_second:1, semester:'108-2'},function(err,result){
 // 	if(err)
 // 		throw err;
 // 	console.log(JSON.parse(result));

@@ -126,9 +126,8 @@ exports.AddPhoneEmail="\
 
 exports.SetResearchApplyFormStatus="\
     update research_apply_form set agree = :agree \
-    where research_title = :research_title and tname = :tname \
-    and first_second = :first_second \
-    and semester = :semester";
+    where semester = :semester \
+    and unique_id = :unique_id";
 
 exports.DeleteResearchApplyForm="\
     delete from research_apply_form \
