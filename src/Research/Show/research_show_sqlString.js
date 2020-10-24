@@ -50,16 +50,16 @@ exports.ShowSingleTeacherInfoResearchCnt="\
         order by r.tname, substring(r.semester, 1, 3)\
     ) as o right join \
     (\
-        select t.teacher_id, t.phone, t.tname, t.email, t.expertise, t.info, tp.photo\
+        select t.teacher_id, t.phone, t.tname, t.email, t.expertise, t.info, t.retirement, tp.photo\
         from teacher_photo as tp right join\
         (\
-            select t.teacher_id, ti.phone, t.tname, ti.email, ti.expertise, ti.info\
+            select t.teacher_id, ti.phone, t.tname, ti.email, ti.expertise, ti.info, ti.retirement\
             from teacher_info as ti right join teacher as t on ti.tname = t.tname and t.teacher_id = :teacher_id\
         ) as t\
         on t.tname = tp.tname\
     ) as t\
    on o.tname = t.tname\
-   where t.teacher_id = :teacher_id";
+   where t.teacher_id = :teacher_id and t.retirement != 1";
 
 exports.ShowAllTeacherInfoResearchCnt="\
     select *\
@@ -99,15 +99,16 @@ exports.ShowAllTeacherInfoResearchCnt="\
         order by r.tname, substring(r.semester, 1, 3)\
     ) as o right join \
     (\
-        select t.teacher_id, t.phone, t.tname, t.email, t.expertise, t.info, tp.photo\
+        select t.teacher_id, t.phone, t.tname, t.email, t.expertise, t.info, t.retirement, tp.photo\
         from teacher_photo as tp right join\
         (\
-            select t.teacher_id, ti.phone, t.tname, ti.email, ti.expertise, ti.info\
+            select t.teacher_id, ti.phone, t.tname, ti.email, ti.expertise, ti.info, ti.retirement\
             from teacher_info as ti right join teacher as t on ti.tname = t.tname\
         ) as t\
         on t.tname=tp.tname\
     ) as t\
-        on o.tname = t.tname";
+        on o.tname = t.tname\
+    where t.retirement != 1";
 
 exports.ShowGivenGradeStudentResearch="\
     select distinct s1.student_id, s1.sname as name, s1.program, t.teacher_id, s1.tname\

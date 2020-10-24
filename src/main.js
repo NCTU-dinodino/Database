@@ -197,11 +197,11 @@ var m = require('./msql.js');
 // 	console.log(JSON.parse(result));
 // }); // SetTeacherPhoto(data, callback) 設定教授照片，回傳query結果
 
-// m.ShowTeacherInfoResearchCnt({teacher_id:'T9229'},function(err, result){
-// 	if(err)
-// 		throw err;
-// 	console.log(JSON.parse(result)[0]);
-// }); // ShowTeacherInfoResearchCnt(callback) 回傳教授各屆的學生人數
+m.ShowTeacherInfoResearchCnt({teacher_id:'T9229'},function(err, result){
+	if(err)
+		throw err;
+	console.log(JSON.parse(result));
+}); // ShowTeacherInfoResearchCnt(callback) 回傳教授各屆的學生人數
 
 // m.ShowStudentIdList(function(err, result){
 // 	if(err)
@@ -227,7 +227,7 @@ var m = require('./msql.js');
 // 	console.log(JSON.parse(result));
 // }); // 以組為單位創建專題申請表
 
-m.SetResearchApplyFormStatus({semester:'109-2', unique_id: '603b1c3c80284d042609da98d3fde571', agree: 3});
+// m.SetResearchApplyFormStatus({semester:'109-2', unique_id: '603b1c3c80284d042609da98d3fde571', agree: 3});
 // // set research apply form agree bit  0預設 1接受 2審核中 3拒絕
 
 // m.DeleteResearchApplyForm({semester:'109-2', unique_id: '603b1c3c80284d042609da98d3fde571'}, function(err, result){
@@ -661,7 +661,7 @@ m.SetResearchApplyFormStatus({semester:'109-2', unique_id: '603b1c3c80284d042609
 // 		throw err;
 // 	console.log(JSON.parse(result));
 // });
-// // 新增所有沒修過專題一的人的專題二資料，輸入是新的學期
+// // 新增所有沒修過專題二的人的專題二資料，輸入是新的學期
 
 // m.SetApplyPeriod({type:'graduation', begin:'2020/7/1, 8:00PM', end: '2020/9/1, 10:00PM'}, function(err, result){
 // 	if(err)
