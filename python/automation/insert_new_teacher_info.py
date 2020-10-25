@@ -11,7 +11,7 @@ def validatecsv(file_path, unique_id):
 	needed_column = ['電話', '教授姓名', 'email', '研究領域', '簡介', '教授id']
 	record_status = 1
 	validate_flag = True
-	df1 = pd.read_csv(file_path)
+	df1 = pd.read_csv(file_path, dtype = str)
 	csv_column = df1.keys().tolist()
 
 	all_include = set(needed_column).issubset(csv_column)
@@ -22,6 +22,9 @@ def validatecsv(file_path, unique_id):
 		validate_flag = False
 		checkFile.recordLog(unique_id, record_status, message, mycursor, connection)
 		return validate_flag
+	df1['是否退休'] = 0
+	os.remove(file_path)
+	df1.to_csv(file_path, index = False, encoding = 'utf-8')
 	df2 = pd.DataFrame(columns = ['教授id', '教授姓名'])
 	df2['教授id'] = df1['教授id']
 	df2['教授姓名'] = df1['教授姓名']
@@ -33,6 +36,8 @@ def insert2db(file_path, output_path, mycursor, connection):
 	record_status = None
 	code = None
 	message = None
+	affect_count1 = None
+	affect_count2 = None
 
 	sql1 =  """create temporary table temp_teacher_info(
 				phone varchar(30),
@@ -41,6 +46,7 @@ def insert2db(file_path, output_path, mycursor, connection):
 				expertise varchar(100),
 				info text,
 				teacher_id varchar(10),
+				retirement int(2) default 0,
 				primary key(tname)
 			)DEFAULT CHARSET=utf8mb4;
 			"""
@@ -62,7 +68,8 @@ def insert2db(file_path, output_path, mycursor, connection):
 				email = tt.email,
 				expertise = tt.expertise,
 				info = tt.info,
-				teacher_id = tt.teacher_id
+				teacher_id = tt.teacher_id,
+				retirement = tt.retirement
 				;
 			"""
 
@@ -135,8 +142,13 @@ if __name__ == '__main__':
 		if record_status == 0:
 			message = "匯入新老師資料錯誤：" + message
 			checkFile.recordLog(unique_id, record_status, message, mycursor, connection)
-		if record_status == 1 and affect_count1 == affect_count2:
+		elif record_status == 1 and affect_count1 == affect_count2:
 			message = "已匯入新老師資料共" + str(affect_count1) + "筆"
 			checkFile.recordLog(unique_id, record_status, message, mycursor, connection)
 	mycursor.close()
 	connection.close()
+	
+	try:
+		os.remove(output_path)
+	except OSError as e:
+		print(e)
