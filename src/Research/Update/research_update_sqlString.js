@@ -134,6 +134,14 @@ exports.DeleteResearchApplyForm="\
     where semester = :semester \
     and unique_id = :unique_id";
 
+exports.ResetCPEStatus="\
+    update student set CPEStatus = 0\
+    where student_id in(\
+        select student_id \
+        from research_apply_form\
+        where unique_id = :unique_id\
+    )";
+
 exports.SetResearchReplace="\
     update research_student set replace_pro = :replace_pro \
     where student_id = :student_id";

@@ -393,7 +393,17 @@ module.exports = {
             data = JSON.parse(data);
         const resource = pool.acquire();
         resource.then(function(c){
+            var sql_ResetCPEStatus = c.prepare(s.ResetCPEStatus);
             var sql_DeleteResearchApplyForm = c.prepare(s.DeleteResearchApplyForm);
+            c.query(sql_ResetCPEStatus(data), function(err, result){
+                if(err)
+                {
+                    callback(err, undefined);
+                    pool.release(c);
+                    throw err;
+                }
+                callback(null, JSON.stringify(result));
+            });
             c.query(sql_DeleteResearchApplyForm(data), function(err, result){
                 if(err)
                 {
