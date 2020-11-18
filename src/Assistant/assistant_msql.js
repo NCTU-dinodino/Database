@@ -217,8 +217,8 @@ module.exports = {
         let exec_sync = require('child_process').execSync;
         let exec = require('child_process').exec;
 
-        let data_path_base = '/home/nctuca/dinodino-extension/automation/data/'
-        let program_path = '/home/nctuca/dinodino-extension/automation/'
+        let data_path_base = '/automation/data/'
+        let program_path = '/automation/'
         let convertProgram = 'checkFile.py'
 
         if(data['data_type'] == '專題選課名單')
